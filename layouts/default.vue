@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="content">
         <AppHeader/>
         <Nuxt />
         <AppFooter />
@@ -45,5 +45,12 @@ h3,
 h4 {
     font-family: "Poppins", sans-serif;
     font-weight: 600;
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    align-content: center;
 }
 </style>

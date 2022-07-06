@@ -1,15 +1,14 @@
 <template>
     <header>
-        <h1>Covid Inc</h1>
+        <img src="~assets/covidLogo.jpg" alt="Covid logo">
     </header>
 </template>
 
 <script>
-    export default {
-        
-    }
+export default {
+
+}
 </script>
 
 <style lang="scss" scoped>
-
 </style>
