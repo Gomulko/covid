@@ -1,19 +1,19 @@
 <template>
   <section>
-    <tabs>
-      <tab @click="switchTab('poland')">Poland</tab>
-      <tab @click="switchTab('yourCountry')">Your Country</tab>
-      <tab @click="switchTab('search')">Search</tab>
+    <tabs class="tabs-container">
+      <tab class="single-tab" @click="switchTab('global')">Global</tab>
+      <tab class="single-tab" @click="switchTab('yourCountry')">Your Country</tab>
+      <tab class="single-tab" @click="switchTab('search')">Search</tab>
     </tabs>
     <div class="content">
-      <div v-if="activeTab === 'poland'" class="poland-box">
-        <h1>Poland box</h1>
+      <div v-if="activeTab === 'global'" class="global-box">
+        <DataView class="content-data" :apiCall="covidData"/>
       </div>
       <div v-else-if="activeTab === 'yourCountry'" class="yourCountry-box">
-        <h1>Your Country</h1>
+        <DataView class="content-data" apiCall="test2"/>
       </div>
       <div v-else-if="activeTab === 'search'" class="search-box">
-        <h1>search box</h1>
+        <DataView class="content-data" apiCall="test3"/>
       </div>
     </div>
   </section>
@@ -21,11 +21,13 @@
 
 <script>
 import { mapState } from 'vuex';
+import DataView from '~/components/DataView.vue';
 export default {
   name: 'IndexPage',
+  components: { DataView },
   data() {
     return {
-      activeTab: 'poland'
+      activeTab: 'global',
     }
   },
   computed: {
@@ -42,6 +44,25 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.content-data {
+  margin-bottom: 50px;
+}
+.tabs-container {
+  border-bottom: 1px solid black;
+  padding-bottom: 10px;
+
+  .single-tab {
+    cursor: pointer;
+    font-size: 30px;
+    font-weight: bold;
+    padding: 0 10px;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
 .active {
   font-weight: bold;
 }

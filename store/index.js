@@ -23,7 +23,7 @@ export const actions = {
 
         try {
             await fetch(
-                "https://api.covid19api.com/", {
+                "https://api.covid19api.com/world/total", {
                 headers: {
                     "Content-Type": "application/json",
                 }
@@ -37,7 +37,4 @@ export const actions = {
             console.log(err);
         }
     },
-    tes123t() {
-        console.log('test')
-    }
 };
