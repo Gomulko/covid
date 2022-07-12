@@ -1,19 +1,14 @@
 <template>
     <div>
-        <pre>{{ apiCall }}</pre>
+        <h1>Total Confirmed: {{ apiCall.TotalConfirmed }}</h1>
+        <h1>Total Deaths: {{ apiCall.TotalDeaths }}</h1>
     </div>
 </template>
 
 <script>
 export default {
-    data() {
-        return {
-            info: ''
-        }
-    },
-
     props: {
-        apiCall: String,
+        apiCall: Object,
     }
 }
 </script>

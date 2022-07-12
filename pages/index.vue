@@ -2,18 +2,18 @@
   <section>
     <tabs class="tabs-container">
       <tab class="single-tab" @click="switchTab('global')">Global</tab>
-      <tab class="single-tab" @click="switchTab('yourCountry')">Your Country</tab>
+      <tab class="single-tab" @click="switchTab('yourCountry'),getUserLocation()">Your Country</tab>
       <tab class="single-tab" @click="switchTab('search')">Search</tab>
     </tabs>
     <div class="content">
       <div v-if="activeTab === 'global'" class="global-box">
-        <DataView class="content-data" :apiCall="covidData"/>
+        <DataView class="content-data" :apiCall="covidData.Global" />
       </div>
       <div v-else-if="activeTab === 'yourCountry'" class="yourCountry-box">
-        <DataView class="content-data" apiCall="test2"/>
+        <DataView class="content-data" :apiCall="{}" />
       </div>
       <div v-else-if="activeTab === 'search'" class="search-box">
-        <DataView class="content-data" apiCall="test3"/>
+        <DataView class="content-data" :apiCall="{}" />
       </div>
     </div>
   </section>
@@ -38,6 +38,10 @@ export default {
   methods: {
     switchTab(item) {
       this.activeTab = item
+    },
+    getUserLocation() {
+      window.navigator.geolocation
+        .getCurrentPosition(console.log, console.log);
     }
   }
 }
@@ -47,6 +51,7 @@ export default {
 .content-data {
   margin-bottom: 50px;
 }
+
 .tabs-container {
   border-bottom: 1px solid black;
   padding-bottom: 10px;

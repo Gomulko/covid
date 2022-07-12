@@ -1,7 +1,8 @@
 
 
 export const state = () => ({
-    covidData: []
+    covidData: [],
+    userLocation: ''
 });
 
 export const getters = {
@@ -23,7 +24,7 @@ export const actions = {
 
         try {
             await fetch(
-                "https://api.covid19api.com/world/total", {
+                "https://api.covid19api.com/summary", {
                 headers: {
                     "Content-Type": "application/json",
                 }
