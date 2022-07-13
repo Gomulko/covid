@@ -1,10 +1,10 @@
 <template>
   <section>
-    <tabs class="tabs-container">
-      <tab class="single-tab" @click="switchTab('global')">Global</tab>
-      <tab class="single-tab" @click="switchTab('yourCountry'),getUserLocation()">Your Country</tab>
-      <tab class="single-tab" @click="switchTab('search')">Search</tab>
-    </tabs>
+    <div class="tabs-container">
+      <span class="single-tab" @click="switchTab('global')">Global</span>
+      <span class="single-tab" @click="switchTab('yourCountry'), getUserLocation()">Your Country</span>
+      <span class="single-tab" @click="switchTab('search')">Search</span>
+    </div>
     <div class="content">
       <div v-if="activeTab === 'global'" class="global-box">
         <DataView class="content-data" :apiCall="covidData.Global" />
@@ -39,9 +39,21 @@ export default {
     switchTab(item) {
       this.activeTab = item
     },
+    success(position) {
+      const latitude = position.coords.latitude
+      const longitude = position.coords.longitude
+
+      const geoApiUrl = `https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${latitude}&longitude=${longitude}&localityLanguage=en`
+      fetch(geoApiUrl)
+        .then(response => response.json())
+        .then(data => console.log(data.countryName));
+    },
+    error() {
+      return console.log('error find country')
+    },
     getUserLocation() {
       window.navigator.geolocation
-        .getCurrentPosition(console.log, console.log);
+        .getCurrentPosition(this.success, this.error);
     }
   }
 }
